@@ -8,6 +8,16 @@
     <ion-list>
 
         <ion-item>
+            <ion-label>Type</ion-label>
+            <ion-select [(ngModel)]="type">
+                <ion-option value="trivia">Trivia</ion-option>
+                <ion-option value="math">Math</ion-option>
+                <ion-option value="date">Date</ion-option>
+                <ion-option value="year">Year</ion-option>
+            </ion-select>
+        </ion-item>
+
+        <ion-item>
             <ion-label floating>Enter Number</ion-label>
             <ion-input type="text" [(ngModel)]="number"></ion-input>
         </ion-item>
@@ -17,4 +27,16 @@
     <div padding>
         <button (click)="getData()" ion-button color="primary" block>Get Data</button>
     </div>
+
+    <ion-card *ngIf="result">
+
+        <ion-card-header>
+            {{ type }}
+        </ion-card-header>
+
+        <ion-card-content>
+            {{ result }}
+        </ion-card-content>
+
+    </ion-card>
 </ion-content>

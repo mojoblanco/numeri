@@ -11,14 +11,14 @@ import 'rxjs/add/operator/do';
 */
 @Injectable()
 export class NumberProvider {
-  url = 'http://numbersapi.com/5/math';
+  base_url = 'http://numbersapi.com/';
 
   constructor(public http: Http) {
     
   }
 
-  getData() {
-    return this.http.get(this.url)
+  getNumberData(number, type) {
+    return this.http.get(this.base_url + number + '/' + type)
       .map(res => res)
       .do(res => console.log(res.text()));
   }

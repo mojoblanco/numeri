@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, LoadingController } from 'ionic-angular';
 import { NumberProvider } from '../../providers/number/number';
 
 @Component({
@@ -8,17 +8,22 @@ import { NumberProvider } from '../../providers/number/number';
 })
 export class HomePage {
 
-  number = 4;
+  number = 0;
+  type = 'trivia';
   result: any;
 
-  constructor(public navCtrl: NavController, private numberProvider: NumberProvider) {
-    this.numberProvider.getData();
+  constructor(public navCtrl: NavController, private numberProvider: NumberProvider, public loadingCtrl: LoadingController) {
   }
 
   getData() {
-    this.numberProvider.getData().subscribe(data => {
+    let loader = this.loadingCtrl.create({
+      content: "Please wait...",
+    });
+    loader.present();
+
+    this.numberProvider.getNumberData(this.number, this.type).subscribe(data => {
+      loader.dismiss();
       this.result = data.text();
-      console.log(this.result);
     });
     
   }
