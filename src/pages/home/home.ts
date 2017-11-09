@@ -13,6 +13,8 @@ export class HomePage {
   result: any;
 
   constructor(public navCtrl: NavController, private numberProvider: NumberProvider, public loadingCtrl: LoadingController) {
+    this.number = Math.floor((Math.random() * 100) + 1);
+    this.getData();
   }
 
   getData() {
